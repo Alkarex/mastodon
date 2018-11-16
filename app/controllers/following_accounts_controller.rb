@@ -26,7 +26,7 @@ class FollowingAccountsController < ApplicationController
   private
 
   def follows
-    @follows ||= Follow.where(account: @account).recent.page(params[:page]).per(FOLLOW_PER_PAGE).preload(:target_account)
+    @follows ||= Follow.where(account: @account).recent.page(params[:page]).per(FOLLOW_PER_PAGE).preload(target_account: :account_stat)
   end
 
   def page_url(page)
